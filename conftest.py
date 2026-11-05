@@ -15,7 +15,7 @@ from agent.copilot.memory import MEMORY_ID as COPILOT_MEMORY_ID
 from agent.direct import CONTEXT_URL
 from agent.gateway import GATEWAY_URL
 from agent.memory import MEMORY_ID
-from backend import agent_service, auth, copilot_service, judge
+from backend import agent_service, auth, copilot_service, handler_emails, judge
 from backend.dashboard import DashboardFiles
 from backend.dashboard import mount as dashboard_mount
 from backend.database import engine, seed
@@ -33,6 +33,7 @@ def use_sqlite(monkeypatch, path):
     """Point the backend at a SQLite file, never Postgres, on the default model."""
     monkeypatch.delenv("DATABASE_URL", raising=False)
     monkeypatch.delenv("MODEL_NAME", raising=False)
+    monkeypatch.delenv(handler_emails.SETTING, raising=False)
     monkeypatch.setenv("CLAIMS_DB", str(path))
 
 

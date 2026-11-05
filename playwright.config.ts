@@ -37,6 +37,7 @@ export default defineConfig({
       // CLAIMS_COPILOT_RUNTIME keep the tests on SQLite, the default model and
       // the stand-ins for the agent and the Copilot, whatever the shell has.
       env: {
+        CLAIMS_HANDLER_EMAILS: "{}",
         CLAIMS_DB: "e2e/claims_workbench.db",
         DATABASE_URL: "",
         MODEL_NAME: "",

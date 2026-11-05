@@ -5,7 +5,7 @@ Verified on November 5, 2026, with Python 3.12.12 and Node 26.12.0 on macOS, plu
 | Check | Result |
 | --- | --- |
 | Python lint, format and Pyright | Passed |
-| Python tests | 836 passed; 99% coverage |
+| Python tests | 843 passed; 99% coverage |
 | Frontend lint, format and TypeScript | Passed |
 | Frontend unit tests | 178 passed across 18 files; 97.42% statement coverage |
 | Playwright browser tests | 32 passed, including sign-in, claim workflows, permissions, Copilot and branding |
@@ -25,5 +25,7 @@ Development dependency updates addressed inherited npm advisories. The `minimatc
 The screening prompt's regression contract is a standalone JSON fixture, so tests no longer require external notebooks. Container host validation has explicit allowed-host and denied-host tests. Screenshots were captured from the real dashboard against isolated test services and inspected visually.
 
 The Hiscox interview presentation uses the official logo as a local asset, with an independent-demo label. Browser checks verify the logo loads and the presentation fits phone and tablet widths in light and dark mode. The application identity, synthetic policy wording and repository remain generic.
+
+Existing Supabase accounts can be explicitly mapped to demo handler ids with `CLAIMS_HANDLER_EMAILS`. Regression tests verify that applying a mapping changes only the intended emails, preserves claims and roles, rejects unknown ids or invalid configuration, and still refuses invalid JWT signatures. Seeding uses the same mapping so it does not undo the setup. Both pytest and Playwright isolate these local overrides from test identities.
 
 Tests use stub models, synthetic data and local service stand-ins. These results establish software behavior and packaging, not live model accuracy or a deployed cloud environment. No paid model calls or cloud provisioning were performed. Existing recovery and confirmation limitations are documented in `ARCHITECTURE.md`.

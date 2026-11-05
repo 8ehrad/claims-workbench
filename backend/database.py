@@ -32,7 +32,7 @@ from sqlalchemy.engine import URL, make_url
 from sqlalchemy.pool import NullPool
 from sqlalchemy.schema import CreateSchema
 
-from backend import context_files
+from backend import context_files, handler_emails
 from backend.free_models import model_or_free, models_or_free
 from backend.models import (
     EvaluationSet,
@@ -617,6 +617,7 @@ def seed(db: Engine) -> dict[str, int]:
     """Build the tables afresh from data/ and count what they hold."""
     company = load("company.json")
     handler_rows = load("handlers.json")
+    emails = handler_emails.for_handlers([h["handler_id"] for h in handler_rows])
     customer_rows = queue_records("customers.json")
     policy_rows = queue_records("policies.json")
     claim_rows = queue_records("claims.json")
@@ -638,7 +639,7 @@ def seed(db: Engine) -> dict[str, int]:
                     "handler_id": h["handler_id"],
                     "name": h["name"],
                     "role": h["role"],
-                    "email": h["email"],
+                    "email": emails.get(h["handler_id"], h["email"]),
                     "can_approve_over_limit": h["can_approve_over_limit"],
                 }
                 for h in handler_rows

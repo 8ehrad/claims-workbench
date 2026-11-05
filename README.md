@@ -58,6 +58,8 @@ Create Supabase Auth users matching the synthetic handlers:
 
 Use passwords you set yourself; this repository contains no live credentials. `HANDLER_PASSWORD` is only for manual browser verification and does not create Auth users.
 
+If you already have Supabase accounts with different emails, keep those accounts and passwords. Map them to the demo handler ids in your local `.env`, for example `CLAIMS_HANDLER_EMAILS='{"HND-01":"senior@example.com"}'`, then run `npm run configure:handlers` against an already seeded database. This changes only the configured handlers' email addresses and preserves claims, decisions and roles. Future seeds respect the same mapping. Sign-in still requires the account's valid Supabase token; matching a display name alone never grants access.
+
 ```sh
 npm run seed
 npm run dev

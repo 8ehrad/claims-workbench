@@ -23,7 +23,8 @@
     "check:runtime": "uv run --isolated --only-group runtime python -c \"import runtime.main, runtime.copilot\"",
     "check:ts": "prettier --check -u dashboard e2e tools *.config.* && eslint dashboard e2e tools *.config.* && tsc && vitest run --root dashboard --coverage",
     "e2e": "playwright test",
-    "package:lambda": "node tools/package-lambda.mjs"
+    "package:lambda": "node tools/package-lambda.mjs",
+    "configure:handlers": "uv run --env-file .env -m backend.configure_handlers"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.117.2",
