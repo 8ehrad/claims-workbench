@@ -1,0 +1,33 @@
+name: Application checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: 0.13.5
+          enable-cache: true
+      - run: uv sync --locked
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run check
+      - run: npm run build
+        env:
+          VITE_SUPABASE_URL: https://demo.supabase.co
+          VITE_SUPABASE_PUBLISHABLE_KEY: demo-publishable-key
+      - run: docker build --build-arg SUPABASE_URL=https://demo.supabase.co --build-arg SUPABASE_PUBLISHABLE=demo-publishable-key -t claims-workbench:ci .
+      - run: docker run --rm --entrypoint python claims-workbench:ci -c "import backend.main, context.asgi, runtime.main, runtime.copilot"
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: browser-test-results
+          path: e2e/test-results

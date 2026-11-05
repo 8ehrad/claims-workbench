@@ -1,0 +1,44 @@
+x-application: &application
+  image: claims-workbench:local
+  build:
+    context: .
+    args:
+      SUPABASE_URL: ${VITE_SUPABASE_URL:?Set VITE_SUPABASE_URL in .env}
+      SUPABASE_PUBLISHABLE: ${VITE_SUPABASE_PUBLISHABLE_KEY:?Set the Supabase publishable key}
+  env_file: .env
+  init: true
+  restart: unless-stopped
+
+services:
+  backend:
+    <<: *application
+    ports: ["127.0.0.1:8000:8000"]
+    environment:
+      CLAIMS_AGENT: http://agent:8080
+      CLAIMS_COPILOT: http://copilot:8081
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/health')"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  context:
+    <<: *application
+    env_file: []
+    command: ["uvicorn", "context.asgi:app", "--host", "0.0.0.0", "--port", "8006"]
+    environment:
+      CLAIMS_CONTEXT_HOST: context
+
+  agent:
+    <<: *application
+    command: ["uvicorn", "agent.entrypoint:app", "--host", "0.0.0.0", "--port", "8080"]
+    environment:
+      CLAIMS_API: http://backend:8000
+      CLAIMS_CONTEXT: http://context:8006/mcp
+
+  copilot:
+    <<: *application
+    command: ["uvicorn", "agent.copilot.entrypoint:app", "--host", "0.0.0.0", "--port", "8081"]
+    environment:
+      CLAIMS_API: http://backend:8000
+      CLAIMS_CONTEXT: http://context:8006/mcp
