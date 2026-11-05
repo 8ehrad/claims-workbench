@@ -6,6 +6,8 @@ An independent insurance claims platform with durable AI agents, human approval 
 
 The demo uses synthetic travel claims and illustrative policy wording. It is not affiliated with an insurer, makes no real payments and does not represent an insurer's underwriting rules.
 
+The website is currently presented as an **interview demo prepared for Hiscox**, with its official logo and a clear independent-demo label. The repository and underlying application remain Claims Workbench.
+
 ![Claims Workbench dashboard with the handler Copilot](docs/images/claims-queue.png)
 
 ## What it demonstrates

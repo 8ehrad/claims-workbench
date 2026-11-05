@@ -1,13 +1,14 @@
-import { Layers3 } from "lucide-react";
-
 export function Brand() {
   return (
     <>
-      <Layers3 aria-hidden />
-      <span className="brand-name">
-        Claims<span className="brand-name-accent">Workbench</span>
+      <span className="brand-logo">
+        <img src="/hiscox-logo.svg" alt="Hiscox" width="90" height="44" />
       </span>
-      <span className="demo-badge">Demo</span>
+      <span className="brand-copy">
+        <span className="brand-name">Claims Workbench</span>
+        <span className="brand-caption">Prepared for Hiscox</span>
+      </span>
+      <span className="demo-badge">Interview demo</span>
     </>
   );
 }

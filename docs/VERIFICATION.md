@@ -8,7 +8,7 @@ Verified on November 5, 2026, with Python 3.12.12 and Node 26.12.0 on macOS, plu
 | Python tests | 836 passed; 99% coverage |
 | Frontend lint, format and TypeScript | Passed |
 | Frontend unit tests | 178 passed across 18 files; 97.42% statement coverage |
-| Playwright browser tests | 31 passed, including sign-in, claim workflows, permissions, Copilot and branding |
+| Playwright browser tests | 32 passed, including sign-in, claim workflows, permissions, Copilot and branding |
 | Isolated server/context/runtime dependencies | Passed; both agent runtime entry points import |
 | Production dashboard build | Passed |
 | Docker image build and Compose configuration | Passed |
@@ -23,5 +23,7 @@ An independent senior-engineer review found two AWS naming issues introduced by 
 Development dependency updates addressed inherited npm advisories. The `minimatch` override pins a patched version 11 for development-tool consumers that otherwise select vulnerable version 10. That crosses their declared major-version range; the full lint, type and test checks validate the installed combination. Keep the lockfile and revisit the override when upstream tools adopt the fixed major version.
 
 The screening prompt's regression contract is a standalone JSON fixture, so tests no longer require external notebooks. Container host validation has explicit allowed-host and denied-host tests. Screenshots were captured from the real dashboard against isolated test services and inspected visually.
+
+The Hiscox interview presentation uses the official logo as a local asset, with an independent-demo label. Browser checks verify the logo loads and the presentation fits phone and tablet widths in light and dark mode. The application identity, synthetic policy wording and repository remain generic.
 
 Tests use stub models, synthetic data and local service stand-ins. These results establish software behavior and packaging, not live model accuracy or a deployed cloud environment. No paid model calls or cloud provisioning were performed. Existing recovery and confirmation limitations are documented in `ARCHITECTURE.md`.

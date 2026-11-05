@@ -58,7 +58,7 @@ export function SignInPage() {
         </ActionForm>
       </section>
       <p className="demo-disclaimer">
-        Independent portfolio demonstration by Behrad Zabihi.
+        Independent interview demo prepared for Hiscox by Behrad Zabihi.
         <br />
         Synthetic policies and claims. No real payments.
       </p>

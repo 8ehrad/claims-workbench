@@ -6,6 +6,7 @@
   --raspberry: #ef476f;
   --midnight: #172b3a;
   --sea-mist: #d9e2e8;
+  --brand-accent: #da291c;
 
   /* Each color for light mode, then dark mode. */
   --page: light-dark(#f3f5f7, #101820);
@@ -182,7 +183,7 @@ p {
   color: var(--sea-mist);
 }
 
-/* Plain links, with a Sea Green bar under the page you're on. */
+/* Navigation uses the presentation's brand accent. */
 .nav {
   display: flex;
   align-items: stretch;
@@ -212,7 +213,7 @@ p {
   bottom: 0;
   height: 3px;
   border-radius: 3px 3px 0 0;
-  background: var(--sea-green);
+  background: var(--brand-accent);
 }
 
 .who {
@@ -323,7 +324,7 @@ p {
   color: var(--muted);
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1200px) {
   .header-bar {
     height: auto;
     flex-wrap: wrap;
@@ -2373,13 +2374,30 @@ fieldset.panel legend + * {
   }
 }
 
-.brand-name {
-  display: inline-flex;
-  gap: 4px;
-  letter-spacing: -0.035em;
+.brand-logo {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  padding: 4px 8px;
+  border-radius: 4px;
 }
-.brand-name-accent {
-  color: var(--sea-green);
+.brand-logo img {
+  display: block;
+  object-fit: contain;
+}
+.brand-copy {
+  display: grid;
+  gap: 2px;
+  line-height: 1.2;
+}
+.brand-name {
+  font-size: 0.98rem;
+  letter-spacing: -0.025em;
+}
+.brand-caption {
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--sea-mist);
 }
 .demo-badge {
   border-radius: 4px;
