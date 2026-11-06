@@ -24,10 +24,7 @@ export function SignInPage() {
         <Brand />
       </p>
       <section className="panel sign-in-panel">
-        <PageHeader
-          title="Sign in"
-          lead="Sign in to your claims workspace. Access is limited to configured demo handlers."
-        />
+        <PageHeader title="Sign in" lead="Sign in to your claims workspace." />
         <ActionForm
           label="Sign in"
           ready={email !== "" && password !== ""}
@@ -57,11 +54,6 @@ export function SignInPage() {
           </label>
         </ActionForm>
       </section>
-      <p className="demo-disclaimer">
-        Independent interview demo prepared for Hiscox by Behrad Zabihi.
-        <br />
-        Synthetic policies and claims. No real payments.
-      </p>
     </main>
   );
 }

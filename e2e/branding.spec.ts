@@ -15,8 +15,10 @@ test("the portfolio identity is clear on the workspace and sign-in page", async 
   await expect(page.locator(".brand-caption")).toHaveText(
     "Prepared for Hiscox",
   );
-  await expect(page.locator(".demo-badge")).toHaveText("Interview demo");
-  await expect(page).toHaveTitle("Hiscox | Claims Workbench Demo");
+  await expect(page.getByText("Interview demo", { exact: true })).toHaveCount(
+    0,
+  );
+  await expect(page).toHaveTitle("Hiscox | Claims Workbench");
   await expect(
     page.getByRole("heading", { name: "Claims queue" }),
   ).toBeVisible();
@@ -35,13 +37,23 @@ test("the portfolio identity is clear on the workspace and sign-in page", async 
     visitor.getByRole("img", { name: "Hiscox", exact: true }),
   ).toBeVisible();
   await expect(
+    visitor.getByText("Prepared for Hiscox", { exact: true }),
+  ).toBeVisible();
+  await expect(
+    visitor.getByRole("textbox", { name: "Email", exact: true }),
+  ).toBeVisible();
+  await expect(visitor.getByLabel("Password", { exact: true })).toBeVisible();
+  await expect(
+    visitor.getByText("Interview demo", { exact: true }),
+  ).toHaveCount(0);
+  await expect(
     visitor.getByText(
       "Independent interview demo prepared for Hiscox by Behrad Zabihi.",
     ),
-  ).toBeVisible();
+  ).toHaveCount(0);
   await expect(
     visitor.getByText("Synthetic policies and claims. No real payments."),
-  ).toBeVisible();
+  ).toHaveCount(0);
   await visitor.screenshot({
     path: testInfo.outputPath("sign-in.png"),
     fullPage: true,

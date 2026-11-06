@@ -8,7 +8,6 @@ export function Brand() {
         <span className="brand-name">Claims Workbench</span>
         <span className="brand-caption">Prepared for Hiscox</span>
       </span>
-      <span className="demo-badge">Interview demo</span>
     </>
   );
 }

@@ -24,7 +24,7 @@ Development dependency updates addressed inherited npm advisories. The `minimatc
 
 The screening prompt's regression contract is a standalone JSON fixture, so tests no longer require external notebooks. Container host validation has explicit allowed-host and denied-host tests. Screenshots were captured from the real dashboard against isolated test services and inspected visually.
 
-The Hiscox interview presentation uses the official logo as a local asset, with an independent-demo label. Browser checks verify the logo loads and the presentation fits phone and tablet widths in light and dark mode. The application identity, synthetic policy wording and repository remain generic.
+The Hiscox presentation uses the official logo as a local asset, with a Prepared for Hiscox caption. Browser checks verify the logo loads, the removed demo badge and footer stay absent, and the presentation fits phone and tablet widths in light and dark mode. The application identity, synthetic policy wording and repository remain generic.
 
 Existing Supabase accounts can be explicitly mapped to demo handler ids with `CLAIMS_HANDLER_EMAILS`. Regression tests verify that applying a mapping changes only the intended emails, preserves claims and roles, rejects unknown ids or invalid configuration, and still refuses invalid JWT signatures. Seeding uses the same mapping so it does not undo the setup. Both pytest and Playwright isolate these local overrides from test identities.
 
