@@ -2,7 +2,7 @@
 
 [![Application checks](https://github.com/8ehrad/claims-workbench/actions/workflows/check.yml/badge.svg)](https://github.com/8ehrad/claims-workbench/actions/workflows/check.yml)
 
-An independent insurance claims platform with durable AI agents, human approval and an auditable handler copilot. Built as a portfolio demonstration by **Behrad Zabihi**.
+An independent insurance claims platform with durable AI agents, human approval and an auditable handler copilot.
 
 The demo uses synthetic travel claims and illustrative policy wording. It is not affiliated with an insurer, makes no real payments and does not represent an insurer's underwriting rules.
 
